@@ -197,3 +197,11 @@ body {
 #undoBtn:hover {
   background-color: #bbb;
 }
+#importButtons {
+  display: flex;
+  gap: 6px;
+}
+
+#importButtons button {
+  flex: 1;
+}

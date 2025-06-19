@@ -83,7 +83,7 @@ button.addEventListener('click', () => {
 
     const label = exactMatch.textContent;
     const index = label.split('. ')[0];
-    status.textContent = `「${value}」已存在（序号 ${index}），已高亮`;
+    status.textContent = `「${value}」已存在（序号 ${index}）`;
     return;
   }
 
@@ -267,3 +267,15 @@ undoBtn.addEventListener('click', () => {
   lastAction = null;
 });
 
+const exportBtn = document.getElementById('exportBtn');
+
+exportBtn.addEventListener('click', () => {
+  const items = Array.from(document.querySelectorAll('.menu-item span')).reverse(); // 正序导出
+  const lines = items.map(item => {
+    const text = item.textContent.split('. ')[1]; // 去掉序号
+    return text;
+  });
+
+  bulkInput.value = lines.join('\n');
+  status.textContent = `已导出 ${lines.length} 项内容`;
+});
