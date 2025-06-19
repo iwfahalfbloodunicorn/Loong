@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <title>练习界面</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>接诗词</h1>
+
+  <!-- 状态/提示文本 -->
+  <div id="statusText">请输入内容并点击发送</div>
+
+  <!-- 输入框 + 按钮 -->
+  <div id="inputArea">
+    <input type="text" id="textInput" placeholder="请输入内容" />
+    <button id="sendBtn">发送</button>
+	<button id="undoBtn">撤销</button>
+  </div>
+
+  <div id="importArea">
+	<h3>批量导入</h3>
+	<textarea id="bulkInput" placeholder="每行一项..."></textarea>
+	<button id="importBtn">导入</button>
+  </div>
+  
+  <!-- 项目列表 -->
+  <ul id="itemList" class="menu"></ul>
+
+  <script src="script.js"></script>
+
+  <!-- 放在 <body> 最后 -->
+  <div id="duplicateWarningContainer"></div>
+
+</body>
+</html>
