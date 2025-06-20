@@ -56,14 +56,15 @@ function createItem(text) {
 }
 
 function renumberItems() {
-  const items = Array.from(list.querySelectorAll('.menu-item')).reverse();
+  const items = Array.from(list.querySelectorAll('.menu-item'));
   itemCount = items.length;
   items.forEach((item, index) => {
     const label = item.querySelector('span');
     const textContent = label.textContent.split('. ')[1];
-    label.textContent = `${itemCount - index}. ${textContent}`;
+    label.textContent = `${itemCount - index}. ${textContent}`;  // 👈 序号仍然从大到小
   });
 }
+
 
 
 button.addEventListener('click', () => {
@@ -257,12 +258,11 @@ undoBtn.addEventListener('click', () => {
   }
 
   if (lastAction.type === 'delete') {
-    const siblings = Array.from(list.children);
-    const insertBeforeNode = siblings[lastAction.index] || null; // 插回原位置（或末尾）
-    list.insertBefore(lastAction.item, insertBeforeNode);
-    renumberItems();
-    status.textContent = `已撤销删除「${lastAction.text}」`;
-  }
+  list.insertBefore(lastAction.item, list.firstChild); // 👈 插回顶部保持倒序
+  renumberItems();
+  status.textContent = `已撤销删除「${lastAction.text}」`;
+}
+
 
   lastAction = null;
 });
